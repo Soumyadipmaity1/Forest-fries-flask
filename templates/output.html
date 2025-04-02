@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .result-card {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .risk-low {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .risk-moderate {
+            background-color: #fff3cd;
+            border-color: #ffeeba;
+            color: #856404;
+        }
+        .risk-high {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        .risk-very-high {
+            background-color: #dc3545;
+            border-color: #bd2130;
+            color: white;
+        }
+        .input-data {
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .back-btn {
+            display: inline-block;
+            background-color: #6c757d;
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        .back-btn:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Forest Fire Risk Prediction Result</h1>
+        
+        <div class="result-card risk-{{ result.risk_level|lower|replace(' ', '-') }}">
+            <h2>Predicted Burned Area: {{ "%.2f"|format(result.prediction) }} hectares</h2>
+            <h3>Risk Level: {{ result.risk_level }}</h3>
+        </div>
+        
+        <div class="input-data">
+            <h3>Input Parameters:</h3>
+            <table>
+                <tr>
+                    <th>Parameter</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Month</td>
+                    <td>{{ result.input_data.month|capitalize }}</td>
+                </tr>
+                <tr>
+                    <td>Day</td>
+                    <td>{{ result.input_data.day|capitalize }}</td>
+                </tr>
+                <tr>
+                    <td>FFMC Index</td>
+                    <td>{{ result.input_data.FFMC }}</td>
+                </tr>
+                <tr>
+                    <td>DMC Index</td>
+                    <td>{{ result.input_data.DMC }}</td>
+                </tr>
+                <tr>
+                    <td>DC Index</td>
+                    <td>{{ result.input_data.DC }}</td>
+                </tr>
+                <tr>
+                    <td>ISI Index</td>
+                    <td>{{ result.input_data.ISI }}</td>
+                </tr>
+                <tr>
+                    <td>Temperature</td>
+                    <td>{{ result.input_data.temp }} °C</td>
+                </tr>
+                <tr>
+                    <td>Relative Humidity</td>
+                    <td>{{ result.input_data.RH }}%</td>
+                </tr>
+                <tr>
+                    <td>Wind Speed</td>
+                    <td>{{ result.input_data.wind }} km/h</td>
+                </tr>
+                <tr>
+                    <td>Rain</td>
+                    <td>{{ result.input_data.rain }} mm</td>
+                </tr>
+            </table>
+        </div>
+        
+        <a href="/" class="back-btn">Make Another Prediction</a>
+    </div>
+</body>
+</html>
