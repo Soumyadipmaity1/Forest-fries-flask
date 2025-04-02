@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forest Fire Risk Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            display: block;
+            margin: 20px auto 0;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+        .info {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Forest Fire Risk Prediction</h1>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="month">Month:</label>
+                <select id="month" name="month" required>
+                    <option value="">Select Month</option>
+                    <option value="jan">January</option>
+                    <option value="feb">February</option>
+                    <option value="mar">March</option>
+                    <option value="apr">April</option>
+                    <option value="may">May</option>
+                    <option value="jun">June</option>
+                    <option value="jul">July</option>
+                    <option value="aug">August</option>
+                    <option value="sep">September</option>
+                    <option value="oct">October</option>
+                    <option value="nov">November</option>
+                    <option value="dec">December</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="day">Day of Week:</label>
+                <select id="day" name="day" required>
+                    <option value="">Select Day</option>
+                    <option value="mon">Monday</option>
+                    <option value="tue">Tuesday</option>
+                    <option value="wed">Wednesday</option>
+                    <option value="thu">Thursday</option>
+                    <option value="fri">Friday</option>
+                    <option value="sat">Saturday</option>
+                    <option value="sun">Sunday</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="FFMC">FFMC Index (18.7-96.2):</label>
+                <input type="number" id="FFMC" name="FFMC" min="18.7" max="96.2" step="0.1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="DMC">DMC Index (1.1-291.3):</label>
+                <input type="number" id="DMC" name="DMC" min="1.1" max="291.3" step="0.1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="DC">DC Index (7.9-860.6):</label>
+                <input type="number" id="DC" name="DC" min="7.9" max="860.6" step="0.1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="ISI">ISI Index (0.0-56.1):</label>
+                <input type="number" id="ISI" name="ISI" min="0.0" max="56.1" step="0.1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="temp">Temperature (°C) (2.2-33.3):</label>
+                <input type="number" id="temp" name="temp" min="2.2" max="33.3" step="0.1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="RH">Relative Humidity (%) (15-100):</label>
+                <input type="number" id="RH" name="RH" min="15" max="100" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="wind">Wind Speed (km/h) (0.4-9.4):</label>
+                <input type="number" id="wind" name="wind" min="0.4" max="9.4" step="0.1" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="rain">Rain (mm) (0.0-6.4):</label>
+                <input type="number" id="rain" name="rain" min="0.0" max="6.4" step="0.1" required>
+            </div>
+            
+            <button type="submit">Predict Fire Risk</button>
+        </form>
+        
+        <div class="info">
+            <p><strong>Note:</strong> This prediction is based on historical forest fire data and machine learning models. 
+            The results should be used as a guide only.</p>
+        </div>
+    </div>
+</body>
+</html>
